@@ -1,21 +1,18 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-
-x=np.linspace(0,1e-5,300)
+x=np.linspace(0,5e-6,100)
 y=(4/3)*(1-np.exp((-3/2)*1e6*x))
-plt.plot(x,y,label='Theoretical')
+ngspice=np.loadtxt('2.8.dat')
+
+
+plt.plot(x,y,color="blue",label='analytical')
+
+plt.plot(ngspice[:,0],ngspice[:,1],'o',color='orange',label='stimulation')
 plt.grid()
-simulation=np.loadtxt('2.8.dat')
-data=[]
-for i in range(0,int(1e6),10000):
-    data.append(simulation[i])
-data=np.array(data)
-plt.scatter(data[:,0],data[:,1],label='Ngspice Simulation',color='orange')
+plt.legend()
 ax=plt.gca()
 ax.set_xlabel('t')
 ax.set_ylabel('$V_{C_0}(t)$')
-plt.legend()
-plt.savefig('../figs/2.8.1.eps')
-plt.savefig('../figs/2.8.1.pdf')
+plt.savefig("../figs/2.8.png")
 plt.show()

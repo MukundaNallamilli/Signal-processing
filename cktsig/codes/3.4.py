@@ -1,13 +1,13 @@
 import numpy as np
 import matplotlib.pyplot as plt
-
-x=np.linspace(0,1e-5,300)
-y=(2/3)*(1+np.exp((-3/2)*1e6*x))
-plt.plot(x,y)
+x=np.linspace(0,1e-5,500)
+y=(2/3)*(1+np.exp(-1.5*1e6*x))
+z=np.ones(500)*(2/3)
+plt.plot(x,y,label=r"$\frac{2}{3}(1+e^{-1.5 \times 10^6 \times t})$",color="blue")
+plt.plot(x,z,label=r"$\frac{2}{3}$",color="red")
+plt.xlabel('t')
+plt.ylabel(r'$V_{C_0}(t)$')
 plt.grid()
-ax=plt.gca()
-ax.set_xlabel('t')
-ax.set_ylabel('$V_{C_0}(t)$')
-plt.savefig('Circuits/figs/3.4.eps')
-plt.savefig('Circuits/figs/3.4.pdf')
+plt.legend()
+plt.savefig("../figs/3.4.png")
 plt.show()
